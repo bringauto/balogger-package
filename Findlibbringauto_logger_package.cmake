@@ -7,7 +7,7 @@ IF(NOT CMAKE_BUILD_TYPE)
 	MESSAGE(FATAL_ERROR "Balogger package does not provide multi-conf support!")
 ENDIF()
 
-FIND_PACKAGE(libbringauto_logger REQUIRED)
+FIND_PACKAGE(CMLIB REQUIRED)
 CMLIB_DEPENDENCY(
 	URI "https://github.com/bringauto/cmake-package-tools.git"
 	URI_TYPE GIT
@@ -33,10 +33,10 @@ ENDIF()
 CMLIB_DEPENDENCY(
 	URI "${balogger_url}"
 	TYPE ARCHIVE
-	OUTPUT_PATH_VAR _curl_ROOT
+	OUTPUT_PATH_VAR _balogger_ROOT
 )
 
-SET(CURL_ROOT "${_balogger_ROOT}"
+SET(libbringauto_logger_ROOT "${_balogger_ROOT}"
 	CACHE STRING
 	"balogger root directory"
 	FORCE
