@@ -22,7 +22,7 @@ SET(version v1.1.0)
 SET(balogger_url)
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	SET(balogger_url
-		"https://github.com/bringauto/balogger-package/releases/download/${version}/libbringauto_logger-dev_${version}_${platform_string}.zip"
+		"https://github.com/bringauto/balogger-package/releases/download/${version}/libbringauto_loggerd-dev_${version}_${platform_string}.zip"
 	)
 ELSE()
 	SET(balogger_url
