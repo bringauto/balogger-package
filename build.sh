@@ -29,28 +29,24 @@ build() {
 		debug_suffix="d"
 	fi
 	pushd "${build_path}"
-		local stripped_version=$(echo -n ${version} | tr '.' '_' )
-		git checkout balogger-${stripped_version}
+		git checkout v${VERSION}
 		cmake -DCMAKE_BUILD_TYPE=${build_type} \
 			-DLIB_TYPE=SPDLOG \
 			-DBRINGAUTO_INSTALL=ON \
 			-DBRINGAUTO_SYSTEM_DEP=ON \
+			-DBRINGAUTO_PACKAGE=ON \
 			../
 		make -j 10
-		make install
-		pushd INSTALL
-			zip -r libbringauto${debug_suffix}-dev_v${version}_${SUFFIX_NAME}.zip ./*
-		popd
-		mv INSTALL/*.zip ./
+		cpack .
+		
+		mv libbringauto_logger-${version}-Linux.zip libbringauto_logger${debug_suffix}-dev_v${version}_${SUFFIX_NAME}.zip
 	popd
 	mv ${build_path}/*.zip ./
 }
 
 
+git clone ssh://git@gitlab.bringauto.com:1999/bring-auto/host-platform/bringauto-logger.git "${REPO_PATH}"
 
-if ! [ -d "${REPO_PATH}" ]; then
-	git clone ssh://git@gitlab.bringauto.com:1999/bring-auto/host-platform/bringauto-logger.git "${REPO_PATH}"
-fi
 
 build "${REPO_PATH}" "${VERSION}" Release
 build "${REPO_PATH}" "${VERSION}" Debug
