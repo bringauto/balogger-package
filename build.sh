@@ -33,7 +33,7 @@ build() {
 		cmake -DCMAKE_BUILD_TYPE=${build_type} \
 			-DLIB_TYPE=SPDLOG \
 			-DBRINGAUTO_INSTALL=ON \
-			-DBRINGAUTO_SYSTEM_DEP=ON \
+			-DBRINGAUTO_SYSTEM_DEP=OFF \
 			-DBRINGAUTO_PACKAGE=ON \
 			../
 		make -j 10
